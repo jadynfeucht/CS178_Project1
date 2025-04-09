@@ -17,6 +17,6 @@ def execute_query(query, args=()):
     cur.close()
     return rows
 
-def get_list_of_dictionaries(category):
+'''def get_list_of_dictionaries(category):
     rows = execute_query("""SELECT *
-                            FROM""")
+                            FROM""")'''
