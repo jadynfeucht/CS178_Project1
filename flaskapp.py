@@ -17,7 +17,7 @@ def access_granted():
         for key, value in selected_item_dict.items():
             if isinstance(value, float):
                 selected_item_dict[key] = Decimal(str(value))
-                
+              
 from flask import session
 
 @app.route('/log-in-user', methods=['GET', 'POST'])
@@ -30,8 +30,8 @@ def login():
 @app.route('/display-user-stats')
 def user-stats():
     key = {"Name":session['username']}
-    response = table.get_item(Key=key)'''
-
+    response = table.get_item(Key=key)
+'''
 # Took this code from previous classes and lab
 from flask import Flask
 from flask import render_template
