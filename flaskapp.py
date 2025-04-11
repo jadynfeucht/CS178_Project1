@@ -31,7 +31,7 @@ def login():
 def user-stats():
     key = {"Name":session['username']}
     response = table.get_item(Key=key)
-'''
+
 # Took this code from previous classes and lab
 from flask import Flask
 from flask import render_template
@@ -87,8 +87,51 @@ def delete_user():
     else:
         # Render the form page if the request method is GET
         return render_template('delete_user.html')
-        
+ 
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+    if request.method == "POST":
+        # Form submission with profile data
+        username = request.form.get("username")
+        first_name = request.form.get("first_name")
+        selected_languages = request.form.getlist("languages")
+
+        if selected_languages:
+            country_matches = get_countries_by_languages(selected_languages)
+        else:
+            country_matches = []
+
+        update_user_profile(username, first_name, ", ", join(selected_languages))
+
+        return render_template(
+            "dashboard.html"
+            success=True,
+            name=first_name,
+            languages=", ".join(selected_languages),
+            country_matches=country_matches
+        )
+    
+    username = request.args.get("username")
+    languages = get_languages()
+    return render_template("dashboard.html", success=False, username=username, languages=languages)
+
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
+'''
 
+from flask import Flask, render_template
+import pymysql
+import creds 
+from dbCode import *
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    countries = get_list_of_dictionaries()
+    return render_template("index.html", results=countries)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)

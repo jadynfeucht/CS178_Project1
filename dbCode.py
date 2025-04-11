@@ -13,10 +13,11 @@ def get_conn():
 def execute_query(query, args=()):
     cur = get_conn().cursor(pymysql.cursors.DictCursor) # this is new
     cur.execute(query, args)
-    rows = cur.ftechall()
+    rows = cur.fetchall()
     cur.close()
     return rows
 
-'''def get_list_of_dictionaries(category):
-    rows = execute_query("""SELECT *
-                            FROM""")'''
+def get_list_of_dictionaries():
+    query = "SELECT Name, Population FROM country LIMIT 10;"
+    return execute_query(query)
+

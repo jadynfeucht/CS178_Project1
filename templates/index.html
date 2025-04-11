@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkpoint</title>
+</head>
+<body>
+    <h1>Top 10 Countries</h1>
+    <ul>
+        {% for country in results %} 
+        <li> {{ country.Name}} - {{ country.Population}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
