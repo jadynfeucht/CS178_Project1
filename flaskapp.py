@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
 from flask import Flask, render_template
 import pymysql
-import creds 
+import creds
 from dbCode import *
 
 app = Flask(__name__)
