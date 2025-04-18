@@ -36,18 +36,22 @@ def register():
     return render_template('register.html')
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        users = read_users()
-        for user in users or []:
-            if user["username"] == username and user["password"] == password:
-                session["username"] = username
-                return redirect(url_for("dashboard"))
-        flash("Invalid username or password", "danger")
-    return render_template("login.html")
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        users = get_users() or []
+        for user in users:
+            if user['username'] == username and user['password'] == password:
+                session['username'] = username
+                return redirect(url_for('home'))  # ✅ This sends you to the home page
+        
+        flash('Invalid credentials. Try again.')  # Optional error message
+
+    return render_template('login.html')
+
 
 @app.route("/logout")
 def logout():

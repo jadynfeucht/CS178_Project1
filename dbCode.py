@@ -35,6 +35,10 @@ def get_list_of_dictionaries():
     return execute_query(query)
 
 ### ----- USER CRUD FUNCTIONS (MySQL) ----- ###
+def get_users():
+    query = "SELECT * FROM users"
+    return execute_query(query)
+
 def create_user(username, password, first_name=None, last_name=None, travel_history=None, travel_destination=None):
     query = """
         INSERT INTO users (username, password, first_name, last_name, travel_history, travel_destination)
