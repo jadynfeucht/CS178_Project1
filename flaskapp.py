@@ -42,7 +42,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         users = read_users()
-        for user in users:
+        for user in users or []:
             if user["username"] == username and user["password"] == password:
                 session["username"] = username
                 return redirect(url_for("dashboard"))
