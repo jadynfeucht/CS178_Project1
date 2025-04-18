@@ -42,11 +42,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        users = get_users() or []
+        users = get_users() or []  # Avoid NoneType error
         for user in users:
             if user['username'] == username and user['password'] == password:
                 session['username'] = username
-                return redirect(url_for('home'))  # ✅ This sends you to the home page
+                return redirect(url_for('dashboard'))  # ✅ corrected this line
         
         flash('Invalid credentials. Try again.')  # Optional error message
 
