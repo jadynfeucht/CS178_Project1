@@ -52,16 +52,27 @@ def logout():
 @app.route("/add-user", methods=["GET", "POST"])
 def add_user():
     if request.method == "POST":
-        username = request.form["username"]
+        username = request.form["username"]  # Corrected field name
         password = request.form["password"]
         first_name = request.form["first_name"]
         last_name = request.form["last_name"]
         travel_history = request.form["travel_history"]
-        travel_destination = request.form["travel_destination"]
-        create_user(username, password, first_name, last_name, travel_history, travel_destination)
+        travel_destinations = request.form["travel_destinations"]
+
+        # Create the user in the database
+        create_user(username, password, first_name, last_name, travel_history, travel_destinations)
+
         flash("User added successfully!", "success")
-        return redirect(url_for("index"))
+        return redirect(url_for("index"))  # Redirecting to the index page
+
     return render_template("add_user.html")
+
+def create_user(username, password, first_name, last_name, travel_history, travel_destination):
+    query = """
+        INSERT INTO users (username, password, first_name, last_name, travel_history, travel_destination)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    execute_query(query, (username, password, first_name, last_name, travel_history, travel_destination), fetch=False)
 
 @app.route("/delete-user", methods=["GET", "POST"])
 def delete_user():
