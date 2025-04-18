@@ -6,12 +6,21 @@
 <body>
     <h1>Add New User</h1>
     <form action="{{ url_for('add_user') }}" method="post">
-        <label for="name">Name:</label><br>
+        <label for="name">Username:</label><br>
         <input type="text" id="name" name="name" required><br>
-        <label for="gone_countries">Where have you travelled?</label><br>
-        <input type="text" id="gone_countries" name="gone_countries" required><br>
-        <label for="go_countries">Where would you like to go?</label><br>
-        <input type="text" id="go_countries" name="go_countries" required><br>
+    
+        <label for="first_name">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name" required><br>
+    
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name" required><br>
+    
+        <label for="travel_history">Where have you travelled?</label><br>
+        <input type="text" id="travel_history" name="travel_history" required><br>
+    
+        <label for="travel_destinations">Where would you like to go?</label><br>
+        <input type="text" id="travel_destinations" name="travel_destinations" required><br>
+    
         <input type="submit" value="Submit">
     </form>
 </body>
