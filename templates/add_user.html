@@ -8,8 +8,10 @@
     <form action="{{ url_for('add_user') }}" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br>
-        <label for="genre">Favorite Genre:</label><br>
-        <input type="text" id="genre" name="genre" required><br>
+        <label for="gone_countries">Where have you travelled?</label><br>
+        <input type="text" id="gone_countries" name="gone_countries" required><br>
+        <label for="go_countries">Where would you like to go?</label><br>
+        <input type="text" id="go_countries" name="go_countries" required><br>
         <input type="submit" value="Submit">
     </form>
 </body>
