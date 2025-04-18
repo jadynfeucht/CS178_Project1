@@ -1,14 +1,33 @@
-# CS 178 Project 1 README.md
+# 🌍 Flask Travel App
 
-This project does X, Y, Z
+A simple web application built with **Flask** that allows users to:
 
-```python
-print("Change this later")
-```
+- 🧍 Register/login
+- 📍 Add countries they've **visited**
+- 🗺️ Add countries they **want to visit**, with **city suggestions**
+- 🛠️ Perform **CRUD operations** (Create, Read, Update, Delete) on:
+  - Users
+  - Visited countries
+  - Wishlist countries
 
-## Text Formatting 
-Different kinds of text:
-- **this is bold**
-- *this is italics*
-- 'this is code'
---- is a horizontal line
+---
+
+## ✨ Features
+
+- 🔐 **User Authentication** (login & registration)
+- 📌 **Visited Countries**: Add countries you've traveled to
+- 🌐 **Travel Wishlist**: Add countries you want to go to
+- 🏙️ **City Suggestions**: Based on your wishlist, you'll get a list of potential cities to explore
+- 🛠️ Full **CRUD** support for users and travel data
+- 🧪 Easy to expand with more features like maps, country facts, or recommendations
+
+---
+
+## 🏗️ Tech Stack
+
+- **Python**
+- **Flask**
+- **NOSQL**
+- **DynamoDB**
+
+
