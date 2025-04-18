@@ -20,14 +20,21 @@ def dashboard():
 
 ### ----- USER AUTH ROUTES ----- ###
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        create_user(username, password)
-        return redirect(url_for("login"))
-    return render_template("register.html")
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        travel_history = request.form['travel_history']
+        travel_destination = request.form['travel_destination']
+
+        create_user(username, password, first_name, last_name, travel_history, travel_destination)
+        flash('User created successfully!', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

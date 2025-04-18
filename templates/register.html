@@ -22,17 +22,16 @@
         {% endwith %}
 
         <!-- Registration Form -->
-        <form action="{{ url_for('register') }}" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
+        <form method="POST" action="/register">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="text" name="travel_history" placeholder="Travel History" required>
+            <input type="text" name="travel_destination" placeholder="Travel Destination" required>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
+        
         <div class="mt-3">
             <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
         </div>
