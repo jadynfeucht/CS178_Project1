@@ -50,7 +50,7 @@ def login():
         
         flash('Invalid credentials. Try again.')  # Optional error message
 
-    return render_template('login.html')
+    return render_template('dashboard.html')
 
 
 @app.route("/logout")
