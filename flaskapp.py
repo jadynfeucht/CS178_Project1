@@ -15,7 +15,7 @@ def index():
 @app.route("/dashboard")
 def dashboard():
     if "username" not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("login"))  # ✅ Protects dashboard
     return render_template("dashboard.html", username=session["username"])
 
 ### ----- USER AUTH ROUTES ----- ###
@@ -46,11 +46,13 @@ def login():
         for user in users:
             if user['username'] == username and user['password'] == password:
                 session['username'] = username
-                return redirect(url_for('dashboard'))  # ✅ corrected this line
+                return redirect(url_for('dashboard'))  # ✅ correct behavior
         
-        flash('Invalid credentials. Try again.')  # Optional error message
+        flash('Invalid credentials. Try again.')  # ❌ fallback for bad login
+        return render_template('login.html')  # ✅ Show login form again if login fails
 
-    return render_template('dashboard.html')
+    return render_template('login.html')  # ✅ Show login form on GET
+
 
 
 @app.route("/logout")
@@ -114,14 +116,17 @@ def update_user_route(user_id):
 
 ### ----- TRAVEL HISTORY ROUTES ----- ###
 
-@app.route("/add-travel", methods=["POST"])
+@app.route("/add-travel", methods=["GET", "POST"])
 def add_travel():
-    username = request.form["username"]
-    destination = request.form["destination"]
-    date_of_trip = request.form["date_of_trip"]
-    add_travel_history(username, destination, date_of_trip)
-    flash("Travel entry added successfully!", "success")
-    return redirect(url_for("dashboard"))
+    if request.method == "POST":
+        username = request.form["username"]
+        destination = request.form["destination"]
+        date_of_trip = request.form["date_of_trip"]
+        add_travel_history(username, destination, date_of_trip)
+        flash("Travel entry added successfully!", "success")
+        return redirect(url_for("dashboard"))
+    return render_template("add_travel.html")
+
 
 @app.route("/get-travel-history/<username>")
 def get_travel_history_route(username):

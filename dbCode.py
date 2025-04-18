@@ -16,6 +16,22 @@ def get_conn():
     return conn
 
 ### ----- MYSQL HELPER FUNCTION ----- ###
+### ----- CREATE USERS TABLE IF NOT EXISTS ----- ###
+def create_users_table():
+    query = """
+    CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        travel_history TEXT,
+        travel_destination TEXT
+    );
+    """
+    execute_query(query, fetch=False)
+
+
 def execute_query(query, args=(), fetch=True):
     conn = get_conn()
     try:
@@ -35,6 +51,7 @@ def get_list_of_dictionaries():
     return execute_query(query)
 
 ### ----- USER CRUD FUNCTIONS (MySQL) ----- ###
+
 def get_users():
     query = "SELECT * FROM users"
     return execute_query(query)
