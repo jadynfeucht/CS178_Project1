@@ -16,10 +16,9 @@ def get_conn():
     return conn
 
 ### ----- MYSQL HELPER FUNCTION ----- ###
-### ----- CREATE USERS TABLE IF NOT EXISTS ----- ###
 def create_users_table():
     query = """
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS world.users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,
@@ -30,6 +29,7 @@ def create_users_table():
     );
     """
     execute_query(query, fetch=False)
+
 
 
 def execute_query(query, args=(), fetch=True):
